@@ -144,7 +144,7 @@ class FarmerProductDetailView(APIView):
 
     def delete(self, request, pk):
         seller = get_farmer_seller(request.user)
-        product = get_object_or_404(Product, id=pk, farmer=seller)
+        product = get_object_or_404(Product, id=pk, seller=seller)
         product.delete()
         return Response(
             {"message": "Product removed."}, status=status.HTTP_204_NO_CONTENT

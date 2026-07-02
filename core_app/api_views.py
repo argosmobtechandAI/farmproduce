@@ -661,7 +661,7 @@ class ProductVariantCreateView(APIView):
         # get product — farmer can only add variant to own product
         if request.user.role == "farmer":
             seller = get_object_or_404(Seller, user=request.user, seller_type="farmer")
-            product = get_object_or_404(Product, id=product_pk, farmer=seller)
+            product = get_object_or_404(Product, id=product_pk, seller=seller)
             serializer = ProductVariantCreateSerializer(data=request.data)
 
         elif request.user.role == "admin":
@@ -720,7 +720,7 @@ class ProductVariantManageView(APIView):
         # farmer can only update own product variants
         if request.user.role == "farmer":
             seller = get_object_or_404(Seller, user=request.user, seller_type="farmer")
-            if product.farmer != seller:
+            if product.seller != seller:
                 return Response(
                     {"error": "You can only update your own product variants."},
                     status=status.HTTP_403_FORBIDDEN,
@@ -771,7 +771,7 @@ class ProductVariantManageView(APIView):
         # farmer can only delete own product variants
         if request.user.role == "farmer":
             seller = get_object_or_404(Seller, user=request.user, seller_type="farmer")
-            if product.farmer != seller:
+            if product.seller != seller:
                 return Response(
                     {"error": "You can only delete your own product variants."},
                     status=status.HTTP_403_FORBIDDEN,

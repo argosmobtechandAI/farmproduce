@@ -30,7 +30,7 @@ def create_product(request):
     serializer = ProductSerializer(data=data)
 
     if serializer.is_valid():
-        product = serializer.save(farmer=request.user.seller)
+        product = serializer.save(seller=request.user.seller)
 
         # ✅ Create variants manually (BEST WAY)
         for variant in variants:
@@ -50,7 +50,7 @@ def create_product(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_products(request):
-    products = Product.objects.filter(farmer=request.user.seller)
+    products = Product.objects.filter(seller=request.user.seller)
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 
@@ -65,7 +65,7 @@ def get_product(request, pk):
         return Response({"error": "Not found"}, status=404)
 
     # 🔐 owner check
-    if product.farmer != request.user.seller:
+    if product.seller != request.user.seller:
         raise PermissionDenied("You are not allowed to view this product")
 
     serializer = ProductSerializer(product)
@@ -82,7 +82,7 @@ def update_product(request, pk):
         return Response({"error": "Not found"}, status=404)
 
     # 🔐 owner check
-    if product.farmer != request.user.seller:
+    if product.seller != request.user.seller:
         raise PermissionDenied("You are not allowed to update this product")
 
     serializer = ProductSerializer(product, data=request.data, partial=True)
@@ -102,7 +102,7 @@ def delete_product(request, pk):
         return Response({"error": "Not found"}, status=404)
 
     # 🔐 owner check
-    if product.farmer != request.user.seller:
+    if product.seller != request.user.seller:
         raise PermissionDenied("You are not allowed to delete this product")
 
     product.delete()
