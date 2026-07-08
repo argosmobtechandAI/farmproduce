@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "957154860735",
+    "project_id": "farmfresh-91fa5",
+    "storage_bucket": "farmfresh-91fa5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957154860735:android:39e8367e1964f59279300a",
+        "android_client_info": {
+          "package_name": "com.freshfarm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957154860735-jttou9v5pgiiprhjp4v9dcasfchoken4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freshfarm",
+            "certificate_hash": "84eee28cad3bce46e979a0c923d2813b93e22c0a"
+          }
+        },
+        {
+          "client_id": "957154860735-1582fvgetnfjqle730eth5a9gcponrfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzlmBWZ2D8cyPjofu-4ODoNcrsTTlUGNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957154860735-1582fvgetnfjqle730eth5a9gcponrfp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
